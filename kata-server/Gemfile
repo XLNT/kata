@@ -29,6 +29,7 @@ gem 'graphql'
 
 group :development, :test do
   gem 'rails-pry'
+  gem 'solargraph'
 end
 
 group :development do
