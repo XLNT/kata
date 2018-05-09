@@ -1,0 +1,42 @@
+.loading-frame-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 4;
+}
+
+.loading-frame-svg, #loading-content-container, .loading-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-frame-svg {
+    z-index: 3;
+}
+
+#loading-content-container {
+    z-index: 2;
+    background-color: #fff;
+}
+
+.loading-content, .loading-inner {
+    z-index: 1;
+    padding: 15px;
+    height: 100%;
+}
+
+.loading-frame-loading-bar {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 30px;
+    stroke-dasharray: 10000;
+}

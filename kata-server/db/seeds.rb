@@ -31,5 +31,10 @@ Campaign.create({
 
 Code.create({
   token: mt2,
-  code: 'test-code-1'
+  code: 'ropdyl-ragnav'
+})
+
+Code.create({
+  token: mt2,
+  code: 'ropdyl-argnav'
 })

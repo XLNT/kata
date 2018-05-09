@@ -1,5 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,700');
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  color: rgba(20, 20, 17, 1);
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.hidden-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.big-boy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2, h4 {
+  font-weight: 400;
+  color: rgba(20, 20, 17, 0.7);
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+.help-text {
+  color: rgba(20, 20, 17, 0.7);
+  font-size: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.typo-title {
+  font-size: 10vh;
+  margin: 0;
+}
+
+input, button {
+  border: 1px solid rgba(20, 20, 17, 1);
+  padding: 9px;
+  font-size: 6vh;
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  input {
+    font-size: 4vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .typo-title {
+    font-size: 6vh;
+  }
+}
+
+input:focus, button:focus {
+  border: 4px solid rgba(20, 20, 17, 1);
+  padding: 6px;
+}
+
+input:disabled, button:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+button {
+  cursor: pointer;
+  font-size: 3vh;
+  background-color: rgba(20, 20, 17, 1);
+  color: rgba(255, 255, 255, 0.991);
+}
+
+button.secondary {
+  color: rgba(20, 20, 17, 1);
+  border-color: rgba(20, 20, 17, 1);
 }
