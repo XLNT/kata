@@ -1,13 +1,23 @@
 Types::QueryType = GraphQL::ObjectType.define do
-  name "Query"
-  # Add root-level fields here.
-  # They will be entry points for queries on your schema.
+  name 'Query'
 
-  # TODO: remove me
-  field :testField, types.String do
-    description "An example field added by the generator"
+  field :getToken do
+    type Types::MintableToken
+    description 'Get token info'
+    argument :query, types.String
     resolve ->(obj, args, ctx) {
-      "Hello World!"
+
+      campaign = Campaign.find_by(code: args['query'])
+      if campaign
+        return campaign.token
+      end
+
+      code = Code.find_by(code: args['query'])
+      if code
+        return code.token
+      end
+
+      GraphQL::ExecutionError.new("Query '#{args['query']}' has no campaigns or codes.")
     }
   end
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  belongs_to: 
+  consumed: false
+  consumed_at: 
+
+two:
+  code: MyString
+  belongs_to: 
+  consumed: false
+  consumed_at: 
