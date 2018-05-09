@@ -1,22 +1,11 @@
 import React from 'react'
-import gql from 'graphql-tag'
-import { Query, ApolloConsumer } from 'react-apollo'
+
+import { Query } from 'react-apollo'
 import { Redirect } from 'react-router-dom'
 
-import './IndexPage.css'
+import { GET_TOKEN } from '../api/queries'
 
-const GET_TOKEN = gql`
-  query getToken($code: String!) {
-    getToken(query: $code) {
-      address
-      metadata {
-        name
-        description
-        image
-      }
-    }
-  }
-`
+import './IndexPage.css'
 
 class IndexPage extends React.Component {
   constructor (props) {
@@ -53,7 +42,7 @@ class IndexPage extends React.Component {
         variables={{ code }}
         skip={!this.validCode(code)}
       >
-        {({ loading, error, data, refetch }) => {
+        {({ loading, error, data }) => {
           if (acquired) {
             return <Redirect to={`/${code}`} />
           }

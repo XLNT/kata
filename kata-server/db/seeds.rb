@@ -11,7 +11,7 @@ mt1 = MintableToken.create({
   metadata_cache: {
     name: 'my name',
     description: 'my description',
-    image: 'test image'
+    image: 'https://placebear.com/1000/400'
   }
 })
 
@@ -20,7 +20,7 @@ mt2 = MintableToken.create({
   metadata_cache: {
     name: 'my name',
     description: 'my description',
-    image: 'test image'
+    image: 'https://placebear.com/400/400'
   }
 })
 

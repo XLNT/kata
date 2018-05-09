@@ -8,19 +8,26 @@
     "apollo-boost": "^0.1.6",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "loaders.css": "^0.1.2",
     "lodash.debounce": "^4.0.8",
+    "mobx": "^4.2.1",
+    "mobx-react": "^5.1.2",
     "normalize.css": "^8.0.0",
     "react": "^16.3.2",
     "react-apollo": "^2.1.4",
+    "react-app-rewire-mobx": "^1.0.8",
+    "react-app-rewired": "^1.5.2",
     "react-dom": "^16.3.2",
+    "react-loaders": "^3.0.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "web3": "^1.0.0-beta.34"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject"
   },
   "homepage": "https://claim.xlnt.co",
   "devDependencies": {

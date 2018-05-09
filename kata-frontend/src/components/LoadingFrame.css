@@ -34,6 +34,11 @@
     height: 100%;
 }
 
+.loading-inner {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .loading-frame-loading-bar {
     fill: none;
     stroke: transparent;

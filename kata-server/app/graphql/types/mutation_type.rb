@@ -10,7 +10,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) {
 
 
-      { sig: 'test' }.with_indifferent_access
+      { sig: args.signature }.with_indifferent_access
     }
   end
 end
