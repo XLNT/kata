@@ -1,5 +1,6 @@
 {
   "name": "kata-frontend",
+  "description": "The frontend for claim.xlnt.co",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,5 +13,20 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "homepage": "https://claim.xlnt.co",
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-promise": "^1.2.6",
+    "eslint-config-standard": "^12.0.0-alpha.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.1.0"
   }
 }
