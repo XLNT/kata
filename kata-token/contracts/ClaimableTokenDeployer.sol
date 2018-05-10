@@ -16,7 +16,9 @@ contract ClaimableTokenDeployer {
   {
     token = new ClaimableToken(_name, _symbol, _tokenURI);
     minter = new ERC721Minter(token);
+    token.addOwner(msg.sender);
     token.addMinter(address(minter));
+    minter.addOwner(msg.sender);
     minter.addBouncer(_bouncer);
   }
 }

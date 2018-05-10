@@ -6,7 +6,7 @@ const provider = url => () => new HDWalletProvider(process.env.MNEMONIC, url)
 const infura = (network) => provider(`https://${network}.infura.io/`)
 
 const defaultConfig = {
-  gas: 8000000,
+  gas: 7800000,
   network_id: '*',
 }
 
@@ -30,7 +30,7 @@ module.exports = {
       provider: infura('mainnet'),
       ...defaultConfig,
       network_id: 1,
-      gasPrice: 7000000000, // 7gwei
+      gasPrice: 14000000000, // 14gwei
     },
     rinkeby: {
       provider: infura('rinkeby'),
