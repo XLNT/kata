@@ -1,5 +1,6 @@
-class MintableToken < ApplicationRecord
+class Token < ApplicationRecord
   has_many :codes
+  has_one :campaign
 
 
   def metadata

@@ -1,13 +1,16 @@
 import gql from 'graphql-tag'
 
 export const GET_TOKEN = gql`
-  query getToken($code: String!) {
-    getToken(query: $code) {
+  query getToken($query: String!) {
+    getToken(query: $query) {
       address
       metadata {
         name
         description
         image
+      }
+      campaign {
+        open
       }
     }
   }
@@ -16,13 +19,13 @@ export const GET_TOKEN = gql`
 export const CLAIM_TOKEN = gql`
   mutation claimToken(
     $query: String!,
-    $signature: String!,
-    $data: String!
+    $currentAccount: String!
+    $signature: String!
   ) {
     claimToken(
       query: $query,
       signature: $signature,
-      data: $data
+      currentAccount: $currentAccount
     ) {
       sig
     }

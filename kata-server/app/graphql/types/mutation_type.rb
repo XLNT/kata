@@ -5,10 +5,11 @@ Types::MutationType = GraphQL::ObjectType.define do
     description 'Claim a token using a code or campaign name.'
     argument :query, !types.String, 'A query for a token'
     argument :signature, !types.String, 'A signature proving ownership of an address'
-    argument :data, !types.String, 'The data that was signed'
+    argument :currentAccount, !types.String, 'The address that signed the signature'
 
     resolve ->(obj, args, ctx) {
 
+      # @TODO - recover
 
       { sig: args.signature }.with_indifferent_access
     }

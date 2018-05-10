@@ -1,9 +1,11 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Query, Mutation } from 'react-apollo'
-import Loading from '../components/Loading'
+import { Query } from 'react-apollo'
 
-import { GET_TOKEN, CLAIM_TOKEN } from '../api/queries'
+import Loading from '../components/Loading'
+import { SignStep, ClaimStep } from '../components/FlowStep'
+
+import { GET_TOKEN } from '../api/queries'
 
 import './ClaimPage.css'
 
@@ -14,20 +16,23 @@ class ClaimPage extends React.Component {
     super(props)
 
     this.state = {
-      signing: false,
       signature: null,
       minting: false,
-      minted: false,
+      tokenId: null,
     }
   }
 
-  requestSignature = async () => {
+  didSign = async (value) => {
+    this.setState({ signature: value })
+  }
 
+  didMint = async (value) => {
+    this.setState({ tokenId: value })
   }
 
   _renderNotice = (children) => {
     return (
-      <div>
+      <div className='notice'>
         {children}
       </div>
     )
@@ -38,24 +43,29 @@ class ClaimPage extends React.Component {
 
     if (!web3.hasWeb3) {
       return this._renderNotice(
-        <p className='text-center'>
-          To claim this token, plase access this page with a web3 client like
-          MetaMask, or a mobile dApp browser like Cipher, Toshi, or Status.
+        <p>
+          Unfortunately, we rely on an Ethereum web3 browser like Brave, MetaMask,
+          Cipher, Toshi, Status, or TrustWallet in order to mint you your token.
+          <br />
+          <br />
+          Bookmark this page or share it to a device of yours that provides web3.
+          In the future we&#39;ll help you get set up with digital ownership right here.
         </p>
       )
     }
 
     if (!web3.hasNetwork) {
       return this._renderNotice(
-        <p className='text-center'>
-          We can&#39;t connect to your web3 node!
+        <p>
+          You&#39;re in a supported browser, but we can&#39;t connect to your web3 node!
+          How&#39;s your internet connection?
         </p>
       )
     }
 
     // if (!domain.hasCrafty) {
     //   return this._renderNotice(
-    //     <p className='text-center'>
+    //     <p>
     //         We&#39;re connected to a network, but the Crafty contract isn&#39;t available.
     //         Are you sure you&#39;re connected to the right network?
     //     </p>
@@ -65,13 +75,13 @@ class ClaimPage extends React.Component {
     if (web3.isLocked) {
       if (web3.isMetaMask) {
         return this._renderNotice(
-          <p className='text-center'>
+          <p>
             Your MetaMask is locked!
           </p>
         )
       } else {
         return this._renderNotice(
-          <p className='text-center'>
+          <p>
             We&#39;ve got a web3 connection, but no access to accounts!
           </p>
         )
@@ -79,8 +89,25 @@ class ClaimPage extends React.Component {
     }
 
     return (
-      <div>
-        GOOD TO GO
+      <div className='flow-container'>
+        <SignStep
+          query={this.props.match.params.query}
+          onDone={this.didSign}
+          disabled={false}
+          success={this.state.signature}
+        />
+        <ClaimStep
+          query={this.props.match.params.query}
+          signature={this.state.signature}
+          onDone={this.didMint}
+          disabled={!this.state.signature}
+          success={this.state.tokenId}
+        />
+        {this.state.tokenId &&
+          <div className='notice'>
+            you did the thing
+          </div>
+        }
       </div>
     )
   }
@@ -92,7 +119,7 @@ class ClaimPage extends React.Component {
     return (
       <Query
         query={GET_TOKEN}
-        variables={{ code: this.props.match.params.code }}
+        variables={{ query: this.props.match.params.query }}
       >
         {({ loading, error, data }) => {
           const tokenInfo = data.getToken
@@ -106,11 +133,13 @@ class ClaimPage extends React.Component {
               }
               {done &&
                 <div className='big-boy'>
-                  <img
-                    className='token-image'
-                    src={tokenInfo.metadata.image}
-                    alt={tokenInfo.metadata.description || tokenInfo.metadata.name}
-                  />
+                  <div>
+                    <img
+                      className='token-image'
+                      src={tokenInfo.metadata.image}
+                      alt={tokenInfo.metadata.description || tokenInfo.metadata.name}
+                    />
+                  </div>
                   <h2 className='token-title'>{tokenInfo.metadata.name}</h2>
                   <p>{tokenInfo.metadata.description}</p>
                   {flow}

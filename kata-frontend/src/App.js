@@ -19,7 +19,7 @@ class App extends Component {
             <LoadingFrame>
               <Switch>
                 <Route exact path='/' component={IndexPage} />
-                <Route path='/:code' component={ClaimPage} />
+                <Route path='/:query' component={ClaimPage} />
               </Switch>
             </LoadingFrame>
           </BrowserRouter>

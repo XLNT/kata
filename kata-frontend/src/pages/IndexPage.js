@@ -39,7 +39,7 @@ class IndexPage extends React.Component {
     return (
       <Query
         query={GET_TOKEN}
-        variables={{ code }}
+        variables={{ query: code }}
         skip={!this.validCode(code)}
       >
         {({ loading, error, data }) => {

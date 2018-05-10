@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180506060855) do
     t.index ["token_id"], name: "index_codes_on_token_id"
   end
 
-  create_table "mintable_tokens", force: :cascade do |t|
+  create_table "tokens", force: :cascade do |t|
     t.string "address", null: false
     t.jsonb "metadata_cache", default: "{}", null: false
     t.datetime "created_at", null: false

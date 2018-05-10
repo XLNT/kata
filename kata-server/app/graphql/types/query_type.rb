@@ -2,7 +2,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
 
   field :getToken do
-    type Types::MintableToken
+    type Types::Token
     description 'Get token info'
     argument :query, types.String
     resolve ->(obj, args, ctx) {

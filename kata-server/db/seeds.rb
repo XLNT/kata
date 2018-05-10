@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-mt1 = MintableToken.create({
+mt1 = Token.create({
   address: '0x1',
   metadata_cache: {
     name: 'my name',
@@ -15,7 +15,7 @@ mt1 = MintableToken.create({
   }
 })
 
-mt2 = MintableToken.create({
+mt2 = Token.create({
   address: '0x2',
   metadata_cache: {
     name: 'my name',
