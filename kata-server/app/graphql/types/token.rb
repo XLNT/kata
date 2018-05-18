@@ -3,6 +3,7 @@ Types::Token = GraphQL::ObjectType.define do
   description 'A token that can be minted.'
 
   field :address, !types.String
+  field :minter, !types.String
   field :metadata, !Types::Metadata
   field :campaign, Types::Campaign
 end

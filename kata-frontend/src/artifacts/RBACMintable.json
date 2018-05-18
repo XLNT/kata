@@ -1,0 +1,567 @@
+{
+  "contractName": "RBACMintable",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "name": "roleName",
+          "type": "string"
+        }
+      ],
+      "name": "checkRole",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "name": "roleName",
+          "type": "string"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "ROLE_MINTER",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "roleName",
+          "type": "string"
+        }
+      ],
+      "name": "RoleAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "roleName",
+          "type": "string"
+        }
+      ],
+      "name": "RoleRemoved",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610368806100206000396000f3006080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630988ca8c811461005b578063217fe6c6146100d157806392afc33a14610159575b600080fd5b34801561006757600080fd5b5060408051602060046024803582810135601f81018590048502860185019096528585526100cf95833573ffffffffffffffffffffffffffffffffffffffff169536956044949193909101919081908401838280828437509497506101e39650505050505050565b005b3480156100dd57600080fd5b5060408051602060046024803582810135601f810185900485028601850190965285855261014595833573ffffffffffffffffffffffffffffffffffffffff169536956044949193909101919081908401838280828437509497506102519650505050505050565b604080519115158252519081900360200190f35b34801561016557600080fd5b5061016e6102c4565b6040805160208082528351818301528351919283929083019185019080838360005b838110156101a8578181015183820152602001610190565b50505050905090810190601f1680156101d55780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61024d826000836040518082805190602001908083835b602083106102195780518252601f1990920191602091820191016101fa565b51815160209384036101000a60001901801990921691161790529201948552506040519384900301909220929150506102fb565b5050565b60006102bd836000846040518082805190602001908083835b602083106102895780518252601f19909201916020918201910161026a565b51815160209384036101000a6000190180199092169116179052920194855250604051938490030190922092915050610310565b9392505050565b60408051808201909152600681527f6d696e7465720000000000000000000000000000000000000000000000000000602082015281565b6103058282610310565b151561024d57600080fd5b73ffffffffffffffffffffffffffffffffffffffff166000908152602091909152604090205460ff16905600a165627a7a72305820d155e1d14acafef93a0b2e3ef315672c37c5e723576ba7f3178e1f95bbb664da0029",
+  "deployedBytecode": "0x6080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630988ca8c811461005b578063217fe6c6146100d157806392afc33a14610159575b600080fd5b34801561006757600080fd5b5060408051602060046024803582810135601f81018590048502860185019096528585526100cf95833573ffffffffffffffffffffffffffffffffffffffff169536956044949193909101919081908401838280828437509497506101e39650505050505050565b005b3480156100dd57600080fd5b5060408051602060046024803582810135601f810185900485028601850190965285855261014595833573ffffffffffffffffffffffffffffffffffffffff169536956044949193909101919081908401838280828437509497506102519650505050505050565b604080519115158252519081900360200190f35b34801561016557600080fd5b5061016e6102c4565b6040805160208082528351818301528351919283929083019185019080838360005b838110156101a8578181015183820152602001610190565b50505050905090810190601f1680156101d55780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61024d826000836040518082805190602001908083835b602083106102195780518252601f1990920191602091820191016101fa565b51815160209384036101000a60001901801990921691161790529201948552506040519384900301909220929150506102fb565b5050565b60006102bd836000846040518082805190602001908083835b602083106102895780518252601f19909201916020918201910161026a565b51815160209384036101000a6000190180199092169116179052920194855250604051938490030190922092915050610310565b9392505050565b60408051808201909152600681527f6d696e7465720000000000000000000000000000000000000000000000000000602082015281565b6103058282610310565b151561024d57600080fd5b73ffffffffffffffffffffffffffffffffffffffff166000908152602091909152604090205460ff16905600a165627a7a72305820d155e1d14acafef93a0b2e3ef315672c37c5e723576ba7f3178e1f95bbb664da0029",
+  "sourceMap": "147:160:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;147:160:10;;;;;;;",
+  "deployedSourceMap": "147:160:10:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;941:110:9;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;941:110:9;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;941:110:9;;-1:-1:-1;941:110:9;;-1:-1:-1;;;;;;;941:110:9;;;1189:132;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1189:132:9;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1189:132:9;;-1:-1:-1;1189:132:9;;-1:-1:-1;;;;;;;1189:132:9;;;;;;;;;;;;;;;;;;;181:45:10;;8:9:-1;5:2;;;30:1;27;20:12;5:2;181:45:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;181:45:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;941:110:9;1019:27;1041:4;1019:5;1025:8;1019:15;;;;;;;;;;;;;36:153:-1;66:2;58:11;;36:153;;176:10;;164:23;;-1:-1;;139:12;;;;98:2;89:12;;;;114;36:153;;;299:10;344;;263:2;259:12;;;254:3;250:22;-1:-1;;246:30;311:9;;295:26;;;340:21;;377:20;365:33;;1019:15:9;;;;;-1:-1:-1;1019:15:9;;;;;;;;;;;;-1:-1:-1;;1019:21:9;:27::i;:::-;941:110;;:::o;1189:132::-;1270:4;1291:25;1311:4;1291:5;1297:8;1291:15;;;;;;;;;;;;;36:153:-1;66:2;58:11;;36:153;;176:10;;164:23;;-1:-1;;139:12;;;;98:2;89:12;;;;114;36:153;;;299:10;344;;263:2;259:12;;;254:3;250:22;-1:-1;;246:30;311:9;;295:26;;;340:21;;377:20;365:33;;1291:15:9;;;;;-1:-1:-1;1291:15:9;;;;;;;;;;;;-1:-1:-1;;1291:19:9;:25::i;:::-;1284:32;1189:132;-1:-1:-1;;;1189:132:9:o;181:45:10:-;;;;;;;;;;;;;;;;;;;:::o;663:107:12:-;749:15;753:4;759;749:3;:15::i;:::-;741:24;;;;;;;848:124;950:17;;929:4;950:17;;;;;;;;;;;;;;;848:124::o",
+  "source": "pragma solidity ^0.4.23;\n\nimport \"./RBAC.sol\";\n\n\n/**\n * @title RBACMintable\n * @author Matt Condon (@shrugs)\n * @dev Mintable logic using RBAC\n */\ncontract RBACMintable is RBAC {\n  string public constant ROLE_MINTER = \"minter\";\n\n  modifier onlyMinter() {\n    checkRole(msg.sender, ROLE_MINTER);\n    _;\n  }\n}\n",
+  "sourcePath": "openzeppelin-solidity/contracts/ownership/rbac/RBACMintable.sol",
+  "ast": {
+    "absolutePath": "openzeppelin-solidity/contracts/ownership/rbac/RBACMintable.sol",
+    "exportedSymbols": {
+      "RBACMintable": [
+        585
+      ]
+    },
+    "id": 586,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 568,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:10"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/ownership/rbac/RBAC.sol",
+        "file": "./RBAC.sol",
+        "id": 569,
+        "nodeType": "ImportDirective",
+        "scope": 586,
+        "sourceUnit": 567,
+        "src": "26:20:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 570,
+              "name": "RBAC",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 566,
+              "src": "172:4:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_RBAC_$566",
+                "typeString": "contract RBAC"
+              }
+            },
+            "id": 571,
+            "nodeType": "InheritanceSpecifier",
+            "src": "172:4:10"
+          }
+        ],
+        "contractDependencies": [
+          566
+        ],
+        "contractKind": "contract",
+        "documentation": "@title RBACMintable\n@author Matt Condon (@shrugs)\n@dev Mintable logic using RBAC",
+        "fullyImplemented": true,
+        "id": 585,
+        "linearizedBaseContracts": [
+          585,
+          566
+        ],
+        "name": "RBACMintable",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 574,
+            "name": "ROLE_MINTER",
+            "nodeType": "VariableDeclaration",
+            "scope": 585,
+            "src": "181:45:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_memory",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 572,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "181:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "6d696e746572",
+              "id": 573,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "218:8:10",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_39eb9ec2059d897c44a17440c762c429de204f6fddd727156ca52b8da086a6f7",
+                "typeString": "literal_string \"minter\""
+              },
+              "value": "minter"
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 583,
+              "nodeType": "Block",
+              "src": "253:52:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 577,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1979,
+                          "src": "269:3:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 578,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "269:10:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 579,
+                        "name": "ROLE_MINTER",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 574,
+                        "src": "281:11:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 576,
+                      "name": "checkRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 496,
+                      "src": "259:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_address_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (address,string memory) view"
+                      }
+                    },
+                    "id": 580,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "259:34:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 581,
+                  "nodeType": "ExpressionStatement",
+                  "src": "259:34:10"
+                },
+                {
+                  "id": 582,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "299:1:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 584,
+            "name": "onlyMinter",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 575,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "250:2:10"
+            },
+            "src": "231:74:10",
+            "visibility": "internal"
+          }
+        ],
+        "scope": 586,
+        "src": "147:160:10"
+      }
+    ],
+    "src": "0:308:10"
+  },
+  "legacyAST": {
+    "absolutePath": "openzeppelin-solidity/contracts/ownership/rbac/RBACMintable.sol",
+    "exportedSymbols": {
+      "RBACMintable": [
+        585
+      ]
+    },
+    "id": 586,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 568,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:10"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/ownership/rbac/RBAC.sol",
+        "file": "./RBAC.sol",
+        "id": 569,
+        "nodeType": "ImportDirective",
+        "scope": 586,
+        "sourceUnit": 567,
+        "src": "26:20:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 570,
+              "name": "RBAC",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 566,
+              "src": "172:4:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_RBAC_$566",
+                "typeString": "contract RBAC"
+              }
+            },
+            "id": 571,
+            "nodeType": "InheritanceSpecifier",
+            "src": "172:4:10"
+          }
+        ],
+        "contractDependencies": [
+          566
+        ],
+        "contractKind": "contract",
+        "documentation": "@title RBACMintable\n@author Matt Condon (@shrugs)\n@dev Mintable logic using RBAC",
+        "fullyImplemented": true,
+        "id": 585,
+        "linearizedBaseContracts": [
+          585,
+          566
+        ],
+        "name": "RBACMintable",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 574,
+            "name": "ROLE_MINTER",
+            "nodeType": "VariableDeclaration",
+            "scope": 585,
+            "src": "181:45:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_memory",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 572,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "181:6:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "6d696e746572",
+              "id": 573,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "218:8:10",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_39eb9ec2059d897c44a17440c762c429de204f6fddd727156ca52b8da086a6f7",
+                "typeString": "literal_string \"minter\""
+              },
+              "value": "minter"
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 583,
+              "nodeType": "Block",
+              "src": "253:52:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 577,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1979,
+                          "src": "269:3:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 578,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "269:10:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 579,
+                        "name": "ROLE_MINTER",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 574,
+                        "src": "281:11:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 576,
+                      "name": "checkRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 496,
+                      "src": "259:9:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_address_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (address,string memory) view"
+                      }
+                    },
+                    "id": 580,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "259:34:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 581,
+                  "nodeType": "ExpressionStatement",
+                  "src": "259:34:10"
+                },
+                {
+                  "id": 582,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "299:1:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 584,
+            "name": "onlyMinter",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 575,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "250:2:10"
+            },
+            "src": "231:74:10",
+            "visibility": "internal"
+          }
+        ],
+        "scope": 586,
+        "src": "147:160:10"
+      }
+    ],
+    "src": "0:308:10"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-05-18T01:43:13.880Z"
+}

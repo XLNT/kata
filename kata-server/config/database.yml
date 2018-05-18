@@ -11,7 +11,9 @@ default: &default
   url: <%= ENV.fetch("DATABASE_URL", "postgres://127.0.0.1:5432/default") %>
   timeout: 5000
 
-test: *default
+test:
+  <<: *default
+  url: 'postgres://postgres@127.0.0.1:5432/kata_test'
 development: *default
 staging: *default
 production: *default

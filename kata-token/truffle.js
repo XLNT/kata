@@ -24,6 +24,7 @@ module.exports = {
     development: {
       host: 'localhost',
       port: 8545,
+      // provider: provider('http://127.0.0.1:8545'),
       ...defaultConfig,
     },
     mainnet: {

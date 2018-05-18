@@ -1,5 +1,7 @@
 import React from 'react'
 
+import web3Utils from 'web3-utils'
+
 import { Query, Mutation } from 'react-apollo'
 import { observer, inject } from 'mobx-react'
 
@@ -9,7 +11,7 @@ import sign from '../utils/sign'
 import { GET_TOKEN, CLAIM_TOKEN } from '../api/queries'
 
 import './FlowStep.css'
-import MintableERC721Token from '../models/MintableERC721Token'
+import ERC721Minter from '../models/ERC721Minter'
 
 const FlowStep = ({
   title,
@@ -71,7 +73,7 @@ export class SignStep extends React.Component {
   getDataToSign = () => {
     const { currentAccount } = this.props.web3
     const { query } = this.props
-    return `yay digital things\n\ni have code: ${query}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nand this is me: ${currentAccount}`
+    return `yay digital things\n\ni have code: ${query}\n\nand this is me: ${currentAccount}`
   }
 
   signData = (claimToken) => async () => {
@@ -104,7 +106,7 @@ export class SignStep extends React.Component {
         {(claimToken, { loading, error: claimError }) => {
           return (
             <FlowStep
-              title={<h3>1/ sign on the dotted line<br />(cryptographically)</h3>}
+              title={<h3>1/ sign on the dotted line<br />(cryptographically speaking)</h3>}
               helpText='(this does not send a transaction)'
               actionText='sign'
               errorText={
@@ -140,16 +142,25 @@ export class ClaimStep extends React.Component {
     }
   }
 
-  mintToken = async (token) => {
+  mintToken = async (tokenInfo) => {
     this.setState({ pending: true })
     const { web3, currentAccount } = this.props.web3
     const { signature } = this.props
     try {
-      const token = MintableERC721Token(web3, currentAccount, token.address)
-      const reciept = await token.methods.mint(signature)
-      console.log(reciept)
-      debugger
+      const minter = ERC721Minter(web3, currentAccount, tokenInfo.minter)
+      const reciept = await minter.methods.mint(signature).send({
+        gasPrice: 2000000000, // 2 gwei
+      })
+      // cool so I really really don't feel like parsing event abis today
+      // but I happen to know that the only event emitted here
+      // is the Mint() event
+      // so args[1] is tokenId and args[2] is owner
+      const tokenId = web3Utils.toBN(
+        reciept.events[0].raw.topics[1]
+      )
+      this.props.onDone(tokenId)
     } catch (error) {
+      console.error(error)
       this.setState({ error: true })
     } finally {
       this.setState({ pending: false })
@@ -174,7 +185,7 @@ export class ClaimStep extends React.Component {
               errorText={'whoops, something went horribly wrong'}
               successText='Minted ✔️'
 
-              requestChange={() => {}}
+              requestChange={() => this.mintToken(data.getToken)}
 
               pending={pending || loading}
               error={error || tokenError}

@@ -1,19 +1,35 @@
 require('dotenv').config()
 
-const signMessage = (signer, message = '', options = {}) => {
-  return web3.eth.sign(signer, web3.sha3(message, options))
+const Account = require('eth-lib/lib/account')
+const web3Utils = require('web3-utils')
+
+const prefixMessage = (data) => {
+  const message = web3Utils.isHexStrict(data) ? web3Utils.hexToBytes(data) : data
+  const messageBuffer = Buffer.from(message)
+  const preamble = '\x19Ethereum Signed Message:\n' + message.length
+  const preambleBuffer = Buffer.from(preamble)
+  const ethMessage = Buffer.concat([preambleBuffer, messageBuffer])
+  return web3Utils.keccak256(ethMessage)
 }
 
-// signs hex string using web3 (auto-applies prefix)
-const signHex = (signer, message = '') => {
-  return signMessage(signer, message, { encoding: 'hex' })
-}
-
-const getSigner = (contract, signer, data = '') => (addr) => {
+const getSigner = (contract, signer, data = '') => async (addr) => {
   // via: https://github.com/OpenZeppelin/zeppelin-solidity/pull/812/files
-  const message = contract.address.substr(2) + addr.substr(2) + data
+  const original = contract.address.substr(2) + addr.substr(2) + data
   // ^ substr to remove `0x` because in solidity the address is a set of byes, not a string `0xabcd`
-  return signHex(signer, message)
+  console.log('original:', original)
+  const hash = web3Utils.sha3(web3Utils.hexToBytes(`0x${original}`))
+  const newHash = web3Utils.soliditySha3(`0x${original}`)
+  console.log('hash:', hash, hash === newHash)
+
+  const prefixed = prefixMessage(hash)
+  console.log('prefixed:', prefixed)
+
+  const sig = Account.sign(
+    prefixed,
+    '0x8e87e42670e858aff1d04ccffe07a5c07dc8a1ac9b81f1c86a480765ac707ebb'
+  )
+
+  return sig
 }
 
 const ClaimableTokenDeployer = artifacts.require('ClaimableTokenDeployer')
@@ -34,7 +50,7 @@ const tokenConfigs = [
   },
 ]
 
-const INITIAL_BOUNCER = process.env.BOUNCER
+const INITIAL_BOUNCER = process.env.BOUNCER.toLowerCase()
 
 module.exports = function (deployer) {
   return deployer.deploy(FuckTruffle).then(async () => {
@@ -58,15 +74,22 @@ module.exports = function (deployer) {
         Minter Address: ${minter.address}
       `)
 
-      // // test a mint
-      // const signFor = getSigner(minter, INITIAL_BOUNCER)
-      // const sig = signFor(INITIAL_BOUNCER)
-      // console.log(`Minting to ${INITIAL_BOUNCER} with signature ${sig}`)
-      // await minter.mint(sig)
+      // try {
+      //   // test a mint
+      //   const signFor = getSigner(minter, INITIAL_BOUNCER)
+      //   const sig = await signFor(INITIAL_BOUNCER)
+      //   console.log('signature:', sig)
+      //   console.log('to:', INITIAL_BOUNCER)
+      //   console.log('from:', INITIAL_BOUNCER)
 
-      // console.log('checking balance...')
-      // const balance = await token.balanceOf(INITIAL_BOUNCER)
-      // console.log('balance:', balance)
+      //   await minter.mint(sig, { from: INITIAL_BOUNCER })
+
+      //   console.log('checking balance...')
+      //   const balance = await token.balanceOf(INITIAL_BOUNCER)
+      //   console.log('balance:', balance.toNumber())
+      // } catch (error) {
+      //   console.error(error)
+      // }
     }
   })
 }

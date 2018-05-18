@@ -58,7 +58,6 @@ export default class Web3Store {
       this.network = defaultNetwork
       this.web3 = null
       this.currentAccount = null
-      clearInterval(this.stopPollingInfo)
       setTimeout(this._getAndSetWeb3, 1000)
       return
     }

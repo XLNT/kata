@@ -4,6 +4,7 @@ export const GET_TOKEN = gql`
   query getToken($query: String!) {
     getToken(query: $query) {
       address
+      minter
       metadata {
         name
         description

@@ -105,7 +105,7 @@ class ClaimPage extends React.Component {
         />
         {this.state.tokenId &&
           <div className='notice'>
-            you did the thing
+            Token got! You&#39;ve minted yourself this non-fungible token, which means it&#39;s now owned by your Ethereum address. We&#39;ll have a nice way to view the things you own in the future, but until then you&#39;ll have to make do with the warm fuzzy feeling you get by owning something unique.
           </div>
         }
       </div>
@@ -122,8 +122,17 @@ class ClaimPage extends React.Component {
         variables={{ query: this.props.match.params.query }}
       >
         {({ loading, error, data }) => {
-          const tokenInfo = data.getToken
-          const done = !loading && !error && tokenInfo
+          const done = !loading && !error && data
+          if (error) {
+            return (
+              <div className='big-boy'>
+                <h1 className='typo-title bold'>NOT FOUND</h1>
+                <h2>
+                  Sorry, either this code doesn&#39;t exist or someone (maybe you!) redeemed it for a token already.
+                </h2>
+              </div>
+            )
+          }
 
           return (
             <div className='big-boy'>
@@ -136,12 +145,12 @@ class ClaimPage extends React.Component {
                   <div>
                     <img
                       className='token-image'
-                      src={tokenInfo.metadata.image}
-                      alt={tokenInfo.metadata.description || tokenInfo.metadata.name}
+                      src={data.tokenInfo.metadata.image}
+                      alt={data.tokenInfo.metadata.description || data.tokenInfo.metadata.name}
                     />
                   </div>
-                  <h2 className='token-title'>{tokenInfo.metadata.name}</h2>
-                  <p>{tokenInfo.metadata.description}</p>
+                  <h2 className='token-title'>{data.tokenInfo.metadata.name}</h2>
+                  <p>{data.tokenInfo.metadata.description}</p>
                   {flow}
                 </div>
               }

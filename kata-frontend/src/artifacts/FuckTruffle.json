@@ -1,0 +1,97 @@
+{
+  "contractName": "FuckTruffle",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058200b215e91c7a6db62f1e1f68127e31ca4a881463648b65170dafeaaf815bfad0f0029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058200b215e91c7a6db62f1e1f68127e31ca4a881463648b65170dafeaaf815bfad0f0029",
+  "sourceMap": "27:25:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:25:2;;;;;;;",
+  "deployedSourceMap": "27:25:2:-;;;;;",
+  "source": "pragma solidity ^0.4.23;\n\n\ncontract FuckTruffle {\n\n}\n",
+  "sourcePath": "/Users/matt/Projects/crypto/XLNT/kata/kata-token/contracts/FuckTruffle.sol",
+  "ast": {
+    "absolutePath": "/Users/matt/Projects/crypto/XLNT/kata/kata-token/contracts/FuckTruffle.sol",
+    "exportedSymbols": {
+      "FuckTruffle": [
+        93
+      ]
+    },
+    "id": 94,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 92,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 93,
+        "linearizedBaseContracts": [
+          93
+        ],
+        "name": "FuckTruffle",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 94,
+        "src": "27:25:2"
+      }
+    ],
+    "src": "0:53:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/matt/Projects/crypto/XLNT/kata/kata-token/contracts/FuckTruffle.sol",
+    "exportedSymbols": {
+      "FuckTruffle": [
+        93
+      ]
+    },
+    "id": 94,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 92,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 93,
+        "linearizedBaseContracts": [
+          93
+        ],
+        "name": "FuckTruffle",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 94,
+        "src": "27:25:2"
+      }
+    ],
+    "src": "0:53:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-05-18T01:43:13.878Z"
+}

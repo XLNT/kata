@@ -7,15 +7,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :query, types.String
     resolve ->(obj, args, ctx) {
 
-      campaign = Campaign.find_by(code: args['query'])
-      if campaign
-        return campaign.token
-      end
-
-      code = Code.find_by(code: args['query'])
-      if code
-        return code.token
-      end
+      token = Token.find_by_query(args.query)
+      return token if token
 
       GraphQL::ExecutionError.new("Query '#{args['query']}' has no campaigns or codes.")
     }

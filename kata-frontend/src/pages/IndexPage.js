@@ -69,6 +69,8 @@ class IndexPage extends React.Component {
                 placeholder='ropdyl-argnav'
                 onChange={this.handleInput}
               />
+              {code.length > 2 && !this.validCode(code) &&
+              }
               {error &&
                 <p className='help-text text-center'>could not find a token for that code</p>
               }
