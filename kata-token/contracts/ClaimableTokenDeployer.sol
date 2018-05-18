@@ -1,12 +1,13 @@
 pragma solidity ^0.4.23;
 
-import "openzeppelin-solidity/contracts/access/ERC721Minter.sol";
+import "./ClaimableTokenMinter.sol";
 import "./ClaimableToken.sol";
 
 
 contract ClaimableTokenDeployer {
   ClaimableToken public token;
-  ERC721Minter public minter;
+  ClaimableTokenMinter public minter;
+
   constructor(
     string _name,
     string _symbol,
@@ -16,7 +17,7 @@ contract ClaimableTokenDeployer {
     public
   {
     token = new ClaimableToken(_name, _symbol, _tokenURI);
-    minter = new ERC721Minter(token);
+    minter = new ClaimableTokenMinter(token);
     token.addOwner(msg.sender);
     token.addMinter(address(minter));
     minter.addOwner(msg.sender);

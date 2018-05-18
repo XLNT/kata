@@ -34,7 +34,7 @@ const getSigner = (contract, signer, data = '') => async (addr) => {
 
 const ClaimableTokenDeployer = artifacts.require('ClaimableTokenDeployer')
 const ClaimableToken = artifacts.require('ClaimableToken')
-const ERC721Minter = artifacts.require('openzeppelin-solidity/ERC721Minter')
+const ClaimableTokenMinter = artifacts.require('ClaimableTokenMinter')
 const FuckTruffle = artifacts.require('FuckTruffle')
 
 const tokenConfigs = [
@@ -43,14 +43,15 @@ const tokenConfigs = [
     symbol: 'MATT',
     tokenUri: 'https://meta.xlnt.co/an-xlnt-matt.json',
   },
-  {
-    name: 'ArtProject Proof of Work, Ethereal 2018',
-    symbol: 'PROOF OF WORK',
-    tokenUri: 'https://meta.xlnt.co/artproject-pow-ethereal.json',
-  },
+  // {
+  //   name: 'ArtProject Proof of Work, Ethereal 2018',
+  //   symbol: 'PROOF OF WORK',
+  //   tokenUri: 'https://meta.xlnt.co/artproject-pow-ethereal.json',
+  // },
 ]
 
 const INITIAL_BOUNCER = process.env.BOUNCER.toLowerCase()
+// const INITIAL_BOUNCER = '0x7E75EdaBCE163EFee3E383Fc7C0a21720367f463'.toLowerCase()
 
 module.exports = function (deployer) {
   return deployer.deploy(FuckTruffle).then(async () => {
@@ -66,7 +67,7 @@ module.exports = function (deployer) {
       const instance = await ClaimableTokenDeployer.deployed()
 
       const token = ClaimableToken.at(await instance.token())
-      const minter = ERC721Minter.at(await instance.minter())
+      const minter = ClaimableTokenMinter.at(await instance.minter())
 
       console.log(`
         Deployed:       ${config.name}
