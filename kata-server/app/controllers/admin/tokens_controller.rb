@@ -10,6 +10,12 @@ module Admin
     #     per(10)
     # end
 
+    def resource_params
+      params = super
+      params[:metadata_cache] = JSON.parse(params[:metadata_cache])
+      params
+    end
+
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)
     #   Token.find_by!(slug: param)
