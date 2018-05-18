@@ -33,7 +33,7 @@ Types::MutationType = GraphQL::ObjectType.define do
       # deactivate any codes
       code = Code.find_by(code: args.query)
       if code
-        code.update!(consumed: true)
+        code.update!(consumed: true, consumed_at: DateTime.now)
       end
 
       { sig: signature }.with_indifferent_access

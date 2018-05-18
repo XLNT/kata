@@ -1,6 +1,7 @@
 class Token < ApplicationRecord
   has_many :codes
   has_one :campaign
+  serialize :metadata_cache
 
 
   def metadata
