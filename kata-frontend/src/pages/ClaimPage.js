@@ -145,12 +145,12 @@ class ClaimPage extends React.Component {
                   <div>
                     <img
                       className='token-image'
-                      src={data.tokenInfo.metadata.image}
-                      alt={data.tokenInfo.metadata.description || data.tokenInfo.metadata.name}
+                      src={data.getToken.metadata.image}
+                      alt={data.getToken.metadata.description || data.getToken.metadata.name}
                     />
                   </div>
-                  <h2 className='token-title'>{data.tokenInfo.metadata.name}</h2>
-                  <p>{data.tokenInfo.metadata.description}</p>
+                  <h2 className='token-title'>{data.getToken.metadata.name}</h2>
+                  <p>{data.getToken.metadata.description}</p>
                   {flow}
                 </div>
               }
