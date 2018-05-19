@@ -149,7 +149,7 @@ export class ClaimStep extends React.Component {
     try {
       const minter = ERC721Minter(web3, currentAccount, tokenInfo.minter)
       const reciept = await minter.methods.mint(signature).send({
-        gasPrice: 2000000000, // 2 gwei
+        gasPrice: 10000000000, // 10 gwei
       })
       // cool so I really really don't feel like parsing event abis today
       // but I happen to know that the only event emitted here

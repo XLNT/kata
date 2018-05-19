@@ -6,7 +6,7 @@ build:
 	yarn run build
 
 push:
-	aws s3 sync build s3://claim.xlnt.co --delete --acl public-read \
+	aws s3 sync build s3://claim.xlnt.co --acl public-read \
 	--region us-west-2 \
 	--profile xlnt-claim
 
