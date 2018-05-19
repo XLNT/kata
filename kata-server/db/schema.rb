@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20180510165331) do
 
   create_table "tokens", force: :cascade do |t|
     t.string "address", null: false
-    t.jsonb "metadata_cache", default: "{}", null: false
+    t.jsonb "metadata_cache", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "minter", null: false

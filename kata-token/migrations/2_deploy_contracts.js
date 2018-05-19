@@ -38,16 +38,16 @@ const ClaimableTokenMinter = artifacts.require('ClaimableTokenMinter')
 const FuckTruffle = artifacts.require('FuckTruffle')
 
 const tokenConfigs = [
-  {
-    name: 'An XLNT Matt',
-    symbol: 'MATT',
-    tokenUri: 'https://meta.xlnt.co/an-xlnt-matt.json',
-  },
   // {
-  //   name: 'ArtProject Proof of Work, Ethereal 2018',
-  //   symbol: 'PROOF OF WORK',
-  //   tokenUri: 'https://meta.xlnt.co/artproject-pow-ethereal.json',
+  //   name: 'An XLNT Matt',
+  //   symbol: 'MATT',
+  //   tokenUri: 'https://meta.xlnt.co/an-xlnt-matt.json',
   // },
+  {
+    name: 'An XLNT Nate',
+    symbol: 'NATE',
+    tokenUri: 'https://meta.xlnt.co/an-xlnt-nate.json',
+  },
 ]
 
 const INITIAL_BOUNCER = process.env.BOUNCER.toLowerCase()

@@ -31,7 +31,8 @@ module.exports = {
       provider: infura('mainnet'),
       ...defaultConfig,
       network_id: 1,
-      gasPrice: 16000000000, // 14gwei
+      gas: 7500000,
+      gasPrice: 15000000000, // 15gwei
     },
     rinkeby: {
       provider: infura('rinkeby'),
