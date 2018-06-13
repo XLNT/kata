@@ -8,7 +8,7 @@ class TokenDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    codes: Field::HasMany,
+    codes: Field::HasMany.with_options(sort_by: :created_at, direction: :desc),
     campaign: Field::HasOne,
     id: Field::Number,
     address: Field::String,
@@ -54,10 +54,7 @@ class TokenDashboard < Administrate::BaseDashboard
     :minter,
   ].freeze
 
-  # Overwrite this method to customize how tokens are displayed
-  # across all pages of the admin dashboard.
-  #
-  # def display_resource(token)
-  #   "Token ##{token.id}"
-  # end
+  def display_resource(token)
+    token.metadata[:name]
+  end
 end

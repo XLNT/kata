@@ -46,15 +46,11 @@ class CodeDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :token,
-    :code,
     :consumed,
     :consumed_at,
   ].freeze
 
-  # Overwrite this method to customize how codes are displayed
-  # across all pages of the admin dashboard.
-  #
-  # def display_resource(code)
-  #   "Code ##{code.id}"
-  # end
+  def display_resource(code)
+    code.code
+  end
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :campaigns
     resources :codes
     resources :tokens
+    post 'tokens/:id/new_code', to: 'tokens#new_code', as: :token_new_code
 
     root to: "tokens#index"
   end

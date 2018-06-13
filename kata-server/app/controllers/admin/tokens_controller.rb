@@ -16,6 +16,14 @@ module Admin
       params
     end
 
+    def new_code
+      Code.create({
+        token: requested_resource,
+      })
+
+      redirect_to admin_token_url(requested_resource)
+    end
+
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)
     #   Token.find_by!(slug: param)
