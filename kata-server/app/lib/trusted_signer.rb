@@ -2,9 +2,11 @@ class TrustedSigner
 
   include HTTParty
   base_uri ENV.fetch('TRUSTED_SIGNER')
-  headers 'Content-Type': 'application/json',
+  headers {
+    'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': "Bearer: #{ENV.fetch('TRUSTED_SIGNER_KEY')}",
+    'Authorization': "Bearer: #{ENV.fetch('TRUSTED_SIGNER_KEY')}"
+  }
 
   def self.recover(message, signature)
     res = self.post('/recover', {
