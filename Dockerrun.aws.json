@@ -4,15 +4,6 @@
   ],
   "containerDefinitions": [
     {
-      "name": "trusted-signer",
-      "image": "shrugs/trusted-signer:latest",
-      "essential": true,
-      "memory": 128,
-      "environment": [
-        { "name": "PORT", "value": "3002" }
-      ]
-    },
-    {
       "name": "kata-server",
       "image": "shrugs/kata-server:latest",
       "essential": true,
@@ -22,12 +13,6 @@
           "hostPort": 80,
           "containerPort": 3000
         }
-      ],
-      "environment": [
-        { "name": "TRUSTED_SIGNER", "value": "http://trusted-signer:3002" }
-      ],
-      "links": [
-        "trusted-signer"
       ]
     }
   ]
