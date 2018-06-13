@@ -1,11 +1,11 @@
 class AtP
   include HTTParty
   base_uri ENV.fetch('AT_P')
-  headers {
+  headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Authorization': "Bearer: #{ENV.fetch('AT_P_KEY')}"
-  }
+  })
 
   def self.toPlanet(ids = [])
     res = self.post('/to/planet', {
