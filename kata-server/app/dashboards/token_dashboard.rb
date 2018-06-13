@@ -8,6 +8,7 @@ class TokenDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    name: Field::String,
     codes: Field::HasMany.with_options(sort_by: :created_at, direction: :desc),
     campaign: Field::HasOne,
     id: Field::Number,
@@ -24,9 +25,10 @@ class TokenDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :id,
+    :name,
     :codes,
     :campaign,
-    :id,
     :address,
   ].freeze
 
@@ -55,6 +57,6 @@ class TokenDashboard < Administrate::BaseDashboard
   ].freeze
 
   def display_resource(token)
-    token.metadata[:name]
+    token.name
   end
 end

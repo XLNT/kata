@@ -8,6 +8,10 @@ class Token < ApplicationRecord
     metadata_cache.with_indifferent_access
   end
 
+  def name
+    metadata[:name]
+  end
+
   def self.find_by_query(query)
     campaign = Campaign.find_by(code: query)
     if campaign
