@@ -5,7 +5,7 @@ class TrustedSigner
   headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': "Bearer: #{ENV.fetch('TRUSTED_SIGNER_KEY')}"
+    'Authorization': "Bearer #{ENV.fetch('TRUSTED_SIGNER_KEY')}"
   })
 
   def self.recover(message, signature)

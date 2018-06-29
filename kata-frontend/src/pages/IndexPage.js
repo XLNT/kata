@@ -20,6 +20,10 @@ class IndexPage extends React.Component {
     return isCorrectLength && isCorrectFormat
   }
 
+  // @TODO - for now codes are only lowercase so this is ok
+  // allos input to be multi-case but matching to be done in lowercase
+  normalizeCode = (code) => code.toLowerCase()
+
   handleInput = (e) => {
     const prevCode = this.state.code
     let code = e.target.value
@@ -39,12 +43,12 @@ class IndexPage extends React.Component {
     return (
       <Query
         query={GET_TOKEN}
-        variables={{ query: code }}
+        variables={{ query: this.normalizeCode(code) }}
         skip={!this.validCode(code)}
       >
         {({ loading, error, data }) => {
           if (acquired) {
-            return <Redirect to={`/${code}`} />
+            return <Redirect to={`/${this.normalizeCode(code)}`} />
           }
 
           return (

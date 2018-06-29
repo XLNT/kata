@@ -4,7 +4,7 @@ class AtP
   headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': "Bearer: #{ENV.fetch('AT_P_KEY')}"
+    'Authorization': "Bearer #{ENV.fetch('AT_P_KEY')}"
   })
 
   def self.toPlanet(ids = [])
