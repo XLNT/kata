@@ -12,18 +12,23 @@ class Token < ApplicationRecord
     metadata[:name]
   end
 
-  def self.find_by_query(query)
+  def self.get_info_by_query(query)
     campaign = Campaign.find_by(code: query)
     if campaign
-      return campaign.token
+      return {
+        campaign: campaign,
+        token: campaign.token,
+      }.with_indifferent_access
     end
 
     code = Code.where({
       code: query,
-      consumed: false,
     }).first
     if code
-      return code.token
+      return {
+        code: code,
+        token: code.token,
+      }.with_indifferent_access
     end
 
     nil

@@ -71,9 +71,8 @@ export class SignStep extends React.Component {
   }
 
   getDataToSign = () => {
-    const { currentAccount } = this.props.web3
     const { query } = this.props
-    return `yay digital things\n\ni have code: ${query}\n\nand this is me: ${currentAccount}`
+    return `yay digital things\n\ni have code: ${query}`
   }
 
   signData = (claimToken) => async () => {
@@ -83,7 +82,6 @@ export class SignStep extends React.Component {
       const signature = await sign(web3, currentAccount, this.getDataToSign())
       claimToken({ variables: {
         signature,
-        currentAccount,
         query: this.props.query,
       } })
     } catch (error) {
@@ -147,7 +145,7 @@ export class ClaimStep extends React.Component {
     const { web3, currentAccount } = this.props.web3
     const { signature } = this.props
     try {
-      const minter = ERC721Minter(web3, currentAccount, tokenInfo.minter)
+      const minter = ERC721Minter(web3, currentAccount, tokenInfo.token.minter)
       const reciept = await minter.methods.mint(signature).send({
         gasPrice: 10000000000, // 10 gwei
       })
@@ -195,6 +193,76 @@ export class ClaimStep extends React.Component {
           )
         }}
       </Query>
+    )
+  }
+}
+
+@inject('web3')
+@observer
+export class SignAndClaimStep extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      pending: false,
+      error: false,
+    }
+  }
+
+  getDataToSign = () => {
+    const { query } = this.props
+    return `yay digital things\n\ni have code: ${query}`
+  }
+
+  signData = (claimToken) => async () => {
+    this.setState({ pending: true })
+    const { web3, currentAccount } = this.props.web3
+    try {
+      const signature = await sign(web3, currentAccount, this.getDataToSign())
+      claimToken({ variables: {
+        signature,
+        query: this.props.query,
+      } })
+    } catch (error) {
+      this.setState({ error: true })
+    } finally {
+      this.setState({ pending: false })
+    }
+  }
+
+  onClaimCompleted = (value) => {
+    this.props.onDone(value.claimToken.tx_hash)
+  }
+
+  render () {
+    const { error, pending } = this.state
+    const { disabled, success } = this.props
+
+    return (
+      <Mutation mutation={CLAIM_TOKEN} onCompleted={this.onClaimCompleted}>
+        {(claimToken, { loading, error: claimError }) => {
+          return (
+            <FlowStep
+              title={<h3>sign on the dotted line<br />(cryptographically speaking)</h3>}
+              helpText="(this does not send a transaction; we're paying for your gas!)"
+              actionText='sign'
+              errorText={
+                claimError
+                  ? 'error connecting to the backend. try again?'
+                  : 'you cancelled the signature. try again?'
+              }
+              successText='Signed ✔️'
+
+              requestChange={this.signData(claimToken)}
+
+              pending={pending || loading}
+              error={error || claimError}
+              success={success}
+              disabled={disabled}
+            />
+          )
+        }}
+      </Mutation>
     )
   }
 }

@@ -28,4 +28,14 @@ class TrustedSigner
     raise StandardError.new('NOPE') unless res.success?
     res['signature']
   end
+
+  def self.sign_and_send_tx(tx)
+    res = self.post('/sign-and-send-tx', {
+      body: {
+        tx: tx
+      }.to_json
+    })
+    raise StandardError.new('NOPE') unless res.success?
+    res['hash']
+  end
 end

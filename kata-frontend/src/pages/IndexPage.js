@@ -95,20 +95,20 @@ class IndexPage extends React.Component {
                     key='p'
                     className='help-text text-center'
                   >
-                    you found &#39;{data.getToken.metadata.name}&#39;
+                    you found &#39;{data.getToken.token.metadata.name}&#39;
                   </p>,
                 ]
               }
               <footer className='big-boy'>
                 <h3>
-                  <a
+                  this is an <a
                     target='_blank'
                     rel='noopener noreferrer'
-                    href='mailto:matt@XLNT.co'
+                    href='https://xlnt.co'
                     className='hidden-link'
                   >
-                    want your own tokens / codes?
-                  </a>
+                    XLNT
+                  </a> app
                 </h3>
               </footer>
             </div>

@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react'
 import { Query } from 'react-apollo'
 
 import Loading from '../components/Loading'
-import { SignStep, ClaimStep } from '../components/FlowStep'
+import { SignStep, ClaimStep, SignAndClaimStep } from '../components/FlowStep'
 
 import { GET_TOKEN } from '../api/queries'
 
@@ -22,12 +22,16 @@ class ClaimPage extends React.Component {
     }
   }
 
-  didSign = async (value) => {
-    this.setState({ signature: value })
+  didSign = async (signature) => {
+    this.setState({ signature })
   }
 
-  didMint = async (value) => {
-    this.setState({ tokenId: value })
+  didMint = async (tokenId) => {
+    this.setState({ tokenId })
+  }
+
+  didSignAndClaim = async (txHash) => {
+    this.setState({ txHash })
   }
 
   _renderNotice = (children) => {
@@ -38,7 +42,7 @@ class ClaimPage extends React.Component {
     )
   }
 
-  _renderClaimingFlow = () => {
+  _renderClaimingFlow = (redeemer_signs) => {
     const { web3 } = this.props
 
     if (!web3.hasWeb3) {
@@ -63,15 +67,6 @@ class ClaimPage extends React.Component {
       )
     }
 
-    // if (!domain.hasCrafty) {
-    //   return this._renderNotice(
-    //     <p>
-    //         We&#39;re connected to a network, but the Crafty contract isn&#39;t available.
-    //         Are you sure you&#39;re connected to the right network?
-    //     </p>
-    //   )
-    // }
-
     if (web3.isLocked) {
       if (web3.isMetaMask) {
         return this._renderNotice(
@@ -88,24 +83,44 @@ class ClaimPage extends React.Component {
       }
     }
 
-    return (
-      <div className='flow-container'>
+    let steps
+    if (redeemer_signs) {
+      steps = [
         <SignStep
+          key='sign'
           query={this.props.match.params.query}
           onDone={this.didSign}
           disabled={false}
           success={this.state.signature}
-        />
+        />,
         <ClaimStep
+          key='claim'
           query={this.props.match.params.query}
           signature={this.state.signature}
           onDone={this.didMint}
           disabled={!this.state.signature}
           success={this.state.tokenId}
-        />
-        {this.state.tokenId &&
+        />,
+      ]
+    } else {
+      steps = [
+        <SignAndClaimStep
+          key='sign-and-claim'
+          query={this.props.match.params.query}
+          onDone={this.didSignAndClaim}
+          success={this.state.txHash}
+        />,
+      ]
+    }
+
+    return (
+      <div className='flow-container'>
+        {steps}
+        {(this.state.tokenId || this.state.txHash) &&
           <div className='notice'>
-            Token got! You&#39;ve minted yourself this non-fungible token, which means it&#39;s now owned by your Ethereum address. We&#39;ll have a nice way to view the things you own in the future, but until then you&#39;ll have to make do with the warm fuzzy feeling you get by owning something unique.
+            Token got! You&#39;ve minted yourself this non-fungible token, which means
+            it&#39;s now owned directly by your Ethereum address. For now, it&#39;s hard to showcase
+            these digital things you own, but you can always come back to this page to check it out.
           </div>
         }
       </div>
@@ -115,7 +130,7 @@ class ClaimPage extends React.Component {
   render () {
     // pre-render the claiming flow because mobx needs to know to track this function call
     // for every single render, not just when Query decides to call it
-    const flow = this._renderClaimingFlow()
+    this._renderClaimingFlow(true)
     return (
       <Query
         query={GET_TOKEN}
@@ -145,15 +160,30 @@ class ClaimPage extends React.Component {
                   <div>
                     <img
                       className='token-image'
-                      src={data.getToken.metadata.image}
-                      alt={data.getToken.metadata.description || data.getToken.metadata.name}
+                      src={data.getToken.token.metadata.image}
+                      alt={data.getToken.token.metadata.description || data.getToken.token.metadata.name}
                     />
                   </div>
-                  <h2 className='token-title'>{data.getToken.metadata.name}</h2>
-                  <p>{data.getToken.metadata.description}</p>
-                  {flow}
+                  <h2 className='token-title'>{data.getToken.token.metadata.name}</h2>
+                  <p>{data.getToken.token.metadata.description}</p>
+                  {data.getToken.code && data.getToken.code.consumed
+                    ? this._renderNotice(<p>You already own this token!</p>)
+                    : this._renderClaimingFlow(data.getToken.token.redeemer_signs)
+                  }
                 </div>
               }
+              <footer className='big-boy'>
+                <h3>
+                  this is an <a
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    href='https://xlnt.co'
+                    className='hidden-link'
+                  >
+                    XLNT
+                  </a> app
+                </h3>
+              </footer>
             </div>
           )
         }}
