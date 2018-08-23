@@ -13,6 +13,6 @@ matrix:
         directories:
           - node_modules
       before_script:
-        - npm run build
+        - yarn run build
       script:
-        - npm test
+        - yarn run test
