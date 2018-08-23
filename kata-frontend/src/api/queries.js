@@ -5,6 +5,7 @@ export const GET_TOKEN = gql`
     getToken(query: $query) {
       address
       minter
+      redeemer_signs
       metadata {
         name
         description

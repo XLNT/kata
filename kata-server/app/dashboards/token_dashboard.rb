@@ -11,6 +11,7 @@ class TokenDashboard < Administrate::BaseDashboard
     name: Field::String,
     codes: Field::HasMany.with_options(sort_by: :created_at, direction: :desc),
     campaign: Field::HasOne,
+    redeemer_signs: Field::Boolean,
     id: Field::Number,
     address: Field::String,
     metadata_cache: Field::String.with_options(searchable: false),
@@ -29,6 +30,7 @@ class TokenDashboard < Administrate::BaseDashboard
     :name,
     :codes,
     :campaign,
+    :redeemer_signs,
     :address,
   ].freeze
 
@@ -37,6 +39,7 @@ class TokenDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :codes,
     :campaign,
+    :redeemer_signs,
     :id,
     :address,
     :metadata_cache,
@@ -51,6 +54,7 @@ class TokenDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :codes,
     :campaign,
+    :redeemer_signs,
     :address,
     :metadata_cache,
     :minter,
