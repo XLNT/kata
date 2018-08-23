@@ -17,6 +17,7 @@ matrix:
           - node_modules
       before_script:
         - cd kata-frontend
+        - yarn install
         - yarn run build
       script:
         - yarn run test
