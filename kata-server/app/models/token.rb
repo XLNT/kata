@@ -24,6 +24,7 @@ class Token < ApplicationRecord
     code = Code.where({
       code: query,
     }).first
+
     if code
       return {
         code: code,

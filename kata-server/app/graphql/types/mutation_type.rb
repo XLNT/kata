@@ -34,6 +34,8 @@ Types::MutationType = GraphQL::ObjectType.define do
       # deactivate any codes
       code = Code.find_by(code: args.query)
       if code
+        # check expiry
+        raise StandardError.new('Code expired!') if code.expired?
         code.update!(consumed: true, consumed_at: DateTime.now)
       end
 

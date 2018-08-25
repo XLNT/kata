@@ -18,6 +18,7 @@ export const GET_TOKEN = gql`
       }
       code {
         consumed
+        expiry
       }
     }
   }

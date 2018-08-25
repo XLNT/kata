@@ -6,6 +6,7 @@ import Loading from '../components/Loading'
 import { SignStep, ClaimStep, SignAndClaimStep } from '../components/FlowStep'
 
 import { GET_TOKEN } from '../api/queries'
+import { relativeTime, isExpired } from '../utils/time'
 
 import './ClaimPage.css'
 
@@ -146,6 +147,17 @@ class ClaimPage extends React.Component {
                 <h1 className='typo-title bold'>NOT FOUND</h1>
                 <h2>
                   Sorry, either this code doesn&#39;t exist or someone (maybe you!) redeemed it for a token already.
+                </h2>
+              </div>
+            )
+          }
+
+          if (done && data.getToken.code && data.getToken.code.expiry && isExpired(data.getToken.code.expiry)) {
+            return (
+              <div className='big-boy'>
+                <h1 className='typo-title bold'>CODE EXPIRED</h1>
+                <h2>
+                  Sorry, this code expired {relativeTime(data.getToken.code.expiry)}!
                 </h2>
               </div>
             )

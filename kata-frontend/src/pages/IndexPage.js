@@ -4,6 +4,7 @@ import { Query } from 'react-apollo'
 import { Redirect } from 'react-router-dom'
 
 import { GET_TOKEN } from '../api/queries'
+import { isExpired, relativeTime } from '../utils/time'
 
 import './IndexPage.css'
 
@@ -51,6 +52,10 @@ class IndexPage extends React.Component {
             return <Redirect to={`/${this.normalizeCode(code)}`} />
           }
 
+          const done = !error && !loading && data
+          const codeIsExpired = done && data.getToken.code && data.getToken.code && isExpired(data.getToken.code.expiry)
+          const codeIsValid = done && !codeIsExpired
+
           return (
             <div className='big-boy'>
               <h1 className='typo-title bold'>
@@ -82,7 +87,12 @@ class IndexPage extends React.Component {
               {error &&
                 <p className='help-text text-center'>could not find a token for that code</p>
               }
-              {!error && !loading &&
+              {codeIsExpired &&
+                <p className='help-text text-center'>
+                  Uh oh! This code expired {relativeTime(data.getToken.code.expiry)}
+                </p>
+              }
+              {codeIsValid &&
                 [
                   <button
                     key='button'

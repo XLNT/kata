@@ -13,6 +13,7 @@ class CodeDashboard < Administrate::BaseDashboard
     code: Field::String,
     consumed: Field::Boolean,
     consumed_at: Field::DateTime,
+    expiry: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -27,6 +28,7 @@ class CodeDashboard < Administrate::BaseDashboard
     :id,
     :code,
     :consumed,
+    :expiry,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,6 +39,7 @@ class CodeDashboard < Administrate::BaseDashboard
     :code,
     :consumed,
     :consumed_at,
+    :expiry,
     :created_at,
     :updated_at,
   ].freeze
@@ -46,6 +49,7 @@ class CodeDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :token,
+    :expiry,
     :consumed,
     :consumed_at,
   ].freeze

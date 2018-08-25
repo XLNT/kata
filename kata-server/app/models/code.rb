@@ -5,6 +5,10 @@ class Code < ApplicationRecord
   MAX_PLANET_ID = 2 ** (4 * 8) - 1
   # ^ 4 bytes
 
+  def expired?
+    DateTime.now > expiry
+  end
+
 private
 
   def generate_at_p()
