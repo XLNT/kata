@@ -2,33 +2,25 @@
   "name": "kata-tokens",
   "version": "1.0.0",
   "description": "",
-  "main": "truffle.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "buidler test"
   },
-  "author": "Matt Condon <m@cond.in> (http://mat.tc)",
-  "license": "ISC",
+  "author": "Matt Condon <matt@xlnt.co>",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-promise": "^1.2.6",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-babel": "^5.1.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-react": "^7.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "ganache-cli": "^6.1.0",
-    "openzeppelin-solidity": "git+https://github.com/shrugs/zeppelin-solidity.git#feat/rbac-mintable-erc721-token",
-    "truffle": "^4.1.7"
-  },
-  "dependencies": {
+    "buidler": "^0.1.5",
+    "chai-bignumber": "^2.0.2",
     "dotenv": "^5.0.1",
-    "eth-lib": "^0.2.8",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "ganache-cli": "^6.1.0",
+    "openzeppelin-solidity": "^1.12.0",
+    "prettier": "^1.14.2",
     "truffle-hdwallet-provider": "0.0.3",
-    "web3-utils": "^1.0.0-beta.34"
+    "web3-utils": "^1.0.0-beta.35"
   }
 }

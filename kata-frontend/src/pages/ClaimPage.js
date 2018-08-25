@@ -118,9 +118,11 @@ class ClaimPage extends React.Component {
         {steps}
         {(this.state.tokenId || this.state.txHash) &&
           <div className='notice'>
-            Token got! You&#39;ve minted yourself this non-fungible token, which means
+            Token got! You&#39;ve minted yourself this token, which means
             it&#39;s now owned directly by your Ethereum address. For now, it&#39;s hard to showcase
-            these digital things you own, but you can always come back to this page to check it out.
+            these digitally owned things, but you can always come back to this page to check it out.
+
+            You can now close this page.
           </div>
         }
       </div>
