@@ -19,7 +19,7 @@ class TrustedSigner
     res['account']
   end
 
-  def self.sign(message)
+  def self.sign_hash_of(message)
     res = self.post('/signhash', {
       body: {
         message: message

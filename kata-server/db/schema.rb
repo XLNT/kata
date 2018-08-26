@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_25_213111) do
+ActiveRecord::Schema.define(version: 2018_08_26_004336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 2018_08_25_213111) do
     t.datetime "updated_at", null: false
     t.string "minter", null: false
     t.boolean "redeemer_signs", default: true
+    t.jsonb "bouncer_abi", default: {}, null: false
+    t.string "action_method", default: "mint", null: false
+    t.jsonb "action_arguments", default: {}, null: false
   end
 
 end

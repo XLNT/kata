@@ -164,7 +164,7 @@ class ClaimPage extends React.Component {
           }
 
           return (
-            <div className='big-boy'>
+            <div className='token-container'>
               <h1 className='typo-title bold'>TOKEN GET!</h1>
               {loading &&
                 <Loading />
@@ -186,7 +186,7 @@ class ClaimPage extends React.Component {
                   }
                 </div>
               }
-              <footer className='big-boy'>
+              <footer>
                 <h3>
                   this is an <a
                     target='_blank'

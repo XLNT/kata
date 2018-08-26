@@ -244,14 +244,14 @@ export class SignAndClaimStep extends React.Component {
           return (
             <FlowStep
               title={<h3>sign on the dotted line<br />(cryptographically speaking)</h3>}
-              helpText="(this does not send a transaction; we're paying for your gas!)"
+              helpText="(this is free; we're paying for your gas!)"
               actionText='sign'
               errorText={
                 claimError
                   ? 'error connecting to the backend. try again?'
                   : 'you cancelled the signature. try again?'
               }
-              successText='Signed ✔️'
+              successText='Sent ✔️'
 
               requestChange={this.signData(claimToken)}
 

@@ -9,29 +9,28 @@ const loadingCompleteDuration = 150
  * shamelessly inspired by AirSwap
  */
 export default class Loader extends Component {
-  componentWillMount () {
-  }
-
   componentDidMount () {
     this.animate()
   }
 
   render () {
     return (
-      <div id='loader-container' className='loading-frame-container'>
-        <svg width='100%' height='100%' className='loading-frame-svg'>
-          <rect
-            id='loader-svg-rect'
-            width='100%'
-            height='100%'
-            className='loading-frame-loading-bar'
-          />
-        </svg>
-        <div id='loading-content-container'>
+      <div className='loading-frame-container'>
+        <div id='loader-container' className='loading-frame'>
+          <svg width='100%' height='100%' className='loading-frame-svg'>
+            <rect
+              id='loader-svg-rect'
+              width='100%'
+              height='100%'
+              className='loading-frame-loading-bar'
+            />
+          </svg>
+        </div>
+        <div id='content-obscura'>
 
         </div>
         <div className='loading-content'>
-          <div className='loading-inner big-boy'>
+          <div className='big-boy'>
             {this.props.children}
           </div>
         </div>
@@ -51,13 +50,13 @@ export default class Loader extends Component {
         elasticity: 0,
         duration: loadingDuration,
       }).add({
-        targets: '#loading-content-container',
+        targets: '#content-obscura',
         opacity: 0,
         easing: 'linear',
         duration: loadingCompleteDuration,
       }).add({
-        targets: '.loading-content, .loading-inner',
-        zIndex: 5,
+        targets: '.loading-content',
+        zIndex: 6,
         easing: 'linear',
         duration: 1,
       })

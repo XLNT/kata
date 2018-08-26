@@ -28,6 +28,13 @@ p {
     padding: 1rem;
 }
 
+.token-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    min-height: 100%;
+}
+
 @media (min-width: 500px) {
     .token-image {
         max-height: 50vh;

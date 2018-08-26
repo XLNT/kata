@@ -11,6 +11,7 @@ gem 'httparty'
 gem 'graphql'
 gem 'graphql-errors'
 gem 'administrate'
+gem 'ethereum.rb'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

@@ -6,7 +6,7 @@ class Code < ApplicationRecord
   # ^ 4 bytes
 
   def expired?
-    DateTime.now > expiry
+    expiry and DateTime.now > expiry
   end
 
 private
