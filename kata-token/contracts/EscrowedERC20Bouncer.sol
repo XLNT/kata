@@ -16,6 +16,12 @@ contract EscrowedERC20Bouncer is SignatureBouncer {
     _;
   }
 
+  modifier validDataWithoutSender(bytes _signature)
+  {
+    require(isValidSignatureAndData(address(this), _signature), "INVALID_SIGNATURE");
+    _;
+  }
+
   constructor(address _bouncer)
     public
   {
@@ -27,7 +33,7 @@ contract EscrowedERC20Bouncer is SignatureBouncer {
    */
   function withdraw(uint256 _nonce, ERC20 _token, address _to, uint256 _amount, bytes _signature)
     public
-    onlyValidSignatureAndData(_signature)
+    validDataWithoutSender(_signature)
   {
     require(_nonce > nonce, "NONCE_GT_NONCE_REQUIRED");
     nonce = _nonce;

@@ -56,6 +56,12 @@ class Token < ApplicationRecord
     "0x#{msg_data[0...(-1 * 2 * REAL_SIG_SIZE)]}"
   end
 
+  def bouncer_data_to_sign(msg_data)
+    # also include the bouncer and the sender (@TODO - remove sender when updated)
+    bouncer_address_hex = minter.downcase[2..-1]
+    "0x#{bouncer_address_hex}#{bouncer_address_hex}#{msg_data[2..-1]}"
+  end
+
   def self.get_info_by_query(query)
     campaign = Campaign.find_by(code: query)
     if campaign
