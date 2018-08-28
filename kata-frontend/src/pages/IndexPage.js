@@ -62,7 +62,7 @@ class IndexPage extends React.Component {
                 GOT
               </h1>
               <h1 className='typo-title bold'>
-                AN XLNT
+                A SECRET
               </h1>
               <h1 className='typo-title bold'>
                 CODE?
