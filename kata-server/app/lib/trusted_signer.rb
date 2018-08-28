@@ -16,6 +16,7 @@ class TrustedSigner
       }.to_json
     })
     raise StandardError.new('NOPE') unless res.success?
+    puts res
     res['account']
   end
 

@@ -18,14 +18,16 @@ Types::MutationType = GraphQL::ObjectType.define do
     resolve ->(obj, args, ctx) {
       original_message = get_data(args)
 
-      redeemer = TrustedSigner.recover(
+      beneficiary = TrustedSigner.recover(
         original_message,
         args.signature
       )
+      raise StandardError.new("Signature Recovery Failed") if beneficiary.nil?
+      puts "Beneficiary: #{beneficiary}"
 
       token, code = Token.get_info_by_query(args.query).values_at(:token, :code)
 
-      base_data = token.base_msg_data(redeemer)
+      base_data = token.base_msg_data(beneficiary)
       data_to_sign = token.bouncer_data_to_sign(base_data)
       signature = TrustedSigner.sign_hash_of(data_to_sign)
       tx_data = add_signature_to_base_data(base_data, signature)

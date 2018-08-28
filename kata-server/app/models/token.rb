@@ -21,8 +21,10 @@ class Token < ApplicationRecord
   end
 
   def base_msg_data(beneficiary = '0x0')
+    puts "Minter: #{minter}"
     bouncer = Bouncer.new(minter)
     nonce = bouncer.nonce
+    puts "Nonce: #{nonce}"
 
     # construct a function using name === action_method
     fn_abi_item = bouncer_abi.find { |abi_item| abi_item["name"] === action_method }

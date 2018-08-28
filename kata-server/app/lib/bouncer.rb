@@ -21,6 +21,8 @@ class Bouncer
 
   def nonce
     client = EthereumClient.instance.client
+    client.default_account = '0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1'
+    # ^ why the fuck does this line need to exist??
     contract = Ethereum::Contract.create(client: client, name: 'WhyDoesThisPolluteMyFuckingGlobalNamespace', code: nil, address: @address, abi: [NONCE_ABI].to_json)
     nonce = contract.call.nonce
     nonce + 1
