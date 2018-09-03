@@ -51,7 +51,7 @@ const getBouncerSigner = (contract, signer) => async (
   methodName,
   methodArgs = []
 ) => {
-  const parts = [contract.address, redeemer];
+  const parts = [contract.address, contract.address];
 
   // if we have a method, add it to the parts that we're signing
   if (methodName) {

@@ -76,24 +76,6 @@ contract(
 
         (await this.token.balanceOf(beneficiary)).should.be.bignumber.equal(1);
       });
-
-      it("doesn't allow anyone to claim it", async function() {
-        const sig = await this.signFor(executor, "withdraw", [
-          ++nonce,
-          this.token.address,
-          beneficiary,
-          "0x1"
-        ]);
-
-        await expectThrow(
-          this.mock.withdraw(nonce, this.token.address, beneficiary, 1, sig, {
-            from: anyone,
-            gas
-          })
-        );
-
-        (await this.token.balanceOf(beneficiary)).should.be.bignumber.equal(0);
-      });
     });
 
     context("with multiple TKNbits in it", function() {
