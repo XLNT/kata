@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_08_26_004336) do
     t.datetime "updated_at", null: false
     t.string "minter", null: false
     t.boolean "redeemer_signs", default: true
-    t.jsonb "bouncer_abi", default: {}, null: false
+    t.jsonb "bouncer_abi", default: [], null: false
     t.string "action_method", default: "mint", null: false
     t.jsonb "action_arguments", default: {}, null: false
   end

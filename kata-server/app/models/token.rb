@@ -20,6 +20,18 @@ class Token < ApplicationRecord
     metadata[:name]
   end
 
+  def metadata_cache_text
+    metadata_cache.to_json
+  end
+
+  def bouncer_abi_text
+    bouncer_abi.to_json
+  end
+
+  def action_arguments_text
+    action_arguments.to_json
+  end
+
   def base_msg_data(beneficiary = '0x0')
     puts "Minter: #{minter}"
     bouncer = Bouncer.new(minter)

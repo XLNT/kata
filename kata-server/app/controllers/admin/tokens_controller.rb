@@ -12,9 +12,12 @@ module Admin
 
     def resource_params
       params = super
-      [:metadata_cache, :bouncer_abi, :action_arguments].each do |key|
-        params[key] = JSON.parse(params[key])
-      end
+      params[:metadata_cache] = JSON.parse(params[:metadata_cache_text])
+      params.delete(:metadata_cache_text)
+      params[:bouncer_abi] = JSON.parse(params[:bouncer_abi_text])
+      params.delete(:bouncer_abi_text)
+      params[:action_arguments] = JSON.parse(params[:action_arguments_text])
+      params.delete(:action_arguments_text)
       params
     end
 
