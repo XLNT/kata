@@ -30,7 +30,7 @@ contract(
       this.mock = await EscrowedERC20Bouncer.new(bouncerSigner, {
         from: deployer
       });
-      this.signFor = getBouncerSigner(this.mock, bouncerSigner);
+      this.sign = getBouncerSigner(this.mock, bouncerSigner);
     });
 
     context("with nothing in it", function() {
@@ -55,7 +55,7 @@ contract(
       });
 
       it("allows bouncer to withdraw for beneficiary via delegate", async function() {
-        const sig = await this.signFor(executor, "withdraw", [
+        const sig = await this.sign("withdraw", [
           ++nonce,
           this.token.address,
           beneficiary,
@@ -85,7 +85,7 @@ contract(
 
       it("allows bouncer to withdraw for beneficiary via delegate for n times", async function() {
         for (let i = 1; i < COUNT + 1; i++) {
-          const sig = await this.signFor(executor, "withdraw", [
+          const sig = await this.sign("withdraw", [
             ++nonce,
             this.token.address,
             beneficiary,

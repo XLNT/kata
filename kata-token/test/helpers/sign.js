@@ -47,7 +47,6 @@ const transformToFullName = function(json) {
  * @param methodArgs any[]
  */
 const getBouncerSigner = (contract, signer) => async (
-  redeemer,
   methodName,
   methodArgs = []
 ) => {
