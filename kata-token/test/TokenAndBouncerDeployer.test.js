@@ -18,8 +18,8 @@ contract(
   "MintableERC20Bouncer",
   ([_, deployer, bouncerSigner, executor, beneficiary]) => {
     beforeEach(async function() {
-      const test = await TokenAndBouncerDeployer.new({ from: deployer });
-      const res = await test.deploy(
+      const deployer = await TokenAndBouncerDeployer.new({ from: deployer });
+      const res = await deployer.deploy(
         "Test Token",
         "TEST",
         18,

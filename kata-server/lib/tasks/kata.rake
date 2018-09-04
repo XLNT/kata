@@ -11,7 +11,7 @@ namespace :kata do
         code = token.codes.create({
           expiry: DateTime.now + 1.month
         })
-        csv << [code.code, "https://get.status.im/browse/makerdao.xlnt.co/#{code.code}"]
+        csv << [code.code, "https://get.status.im/browse/claim.xlnt.co/#{code.code}"]
       end
     end
   end
