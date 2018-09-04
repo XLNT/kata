@@ -11,12 +11,10 @@ contract KataToken is ERC20, ERC20Detailed, ERC20Mintable, ERC20WithMetadata {
     string _name,
     string _symbol,
     uint8 _decimals,
-    string _metadataURI
+    string _tokenURI
   )
-    ERC20WithMetadata(_metadataURI)
+    ERC20WithMetadata(_tokenURI)
     ERC20Detailed(_name, _symbol, _decimals)
-    ERC20Mintable()
-    ERC20()
     public
   {}
 }
