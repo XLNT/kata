@@ -1,21 +1,26 @@
 const TokenAndBouncerDeployer = artifacts.require("TokenAndBouncerDeployer");
 
-const INITIAL_SIGNER = "0x4ee6b15c72919582C2fBc8cFa4a6AE24a7d6950d";
+const INITIAL_SIGNER = process.env.SIGNER.toLowerCase();
 
 const NAME = "Nifty Commons";
 const SYMBOL = "NIFTY";
-const DECIMALS = 18;
+const DECIMALS = 0;
 const TOKEN_URI = "https://meta.xlnt.co/niftycommons.json";
 
-modules.exports = async ([main]) => {
-  const bouncer = await TokenAndBouncerDeployer.new(
+const main = async () => {
+  const bouncer = await TokenAndBouncerDeployer.new();
+  const res = await bouncer.deploy(
     NAME,
     SYMBOL,
     DECIMALS,
     TOKEN_URI,
     INITIAL_SIGNER,
-    { from: main }
+    { gas: 7000000 }
   );
 
-  console.log(bouncer);
+  const args = res.logs[res.logs.length - 1].args;
+
+  console.log(args);
 };
+
+module.exports = main();
